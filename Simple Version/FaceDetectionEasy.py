@@ -1,4 +1,3 @@
-import cvzone
 from cvzone.FaceDetectionModule import FaceDetector
 import cv2
 

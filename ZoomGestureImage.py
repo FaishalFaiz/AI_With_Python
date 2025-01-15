@@ -1,4 +1,3 @@
-import cvzone
 from cvzone.HandTrackingModule import HandDetector
 import cv2
 
@@ -27,12 +26,10 @@ while True:
             tipOfSecondFinger = lmList2[8][:2]
 
             if startDist is None:
-                # length, info, img = detector.findDistance(tipOfFirstFinger, tipOfSecondFinger, img)
                 length, info, img = detector.findDistance(hands[0]["center"], hands[1]["center"], img)
                 print(length)
                 startDist = length
 
-            # length, info, img = detector.findDistance(tipOfFirstFinger, tipOfSecondFinger, img)
             length, info, img = detector.findDistance(hands[0]["center"], hands[1]["center"], img)
             scale = int((length - startDist) // 2)
             cx, cv = info[4:]
@@ -43,7 +40,7 @@ while True:
 
     try:
         h1, w1, _ = img1.shape
-        newH, newW = ((h1+scale)//2)*2, ((w1+scale)//2)*2 # sebelum dirubah h1+scale, w1+scale
+        newH, newW = ((h1+scale)//2)*2, ((w1+scale)//2)*2
         img1 = cv2.resize(img1, (newW, newH))
 
         img[cv-newH//2:cv+ newH//2, cx-newW//2:cx+ newW//2] = img1

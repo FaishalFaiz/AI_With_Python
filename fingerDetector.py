@@ -1,6 +1,3 @@
-from tokenize import detect_encoding
-
-import cvzone
 from cvzone.HandTrackingModule import HandDetector
 import cv2
 
@@ -11,7 +8,7 @@ cap = cv2.VideoCapture(0)
 cap.set(3, 1080)
 cap.set(4, 720)
 
-detector = HandDetector( maxHands=2,  detectionCon=0.5, minTrackCon=0.5)
+detector = HandDetector(maxHands=2, detectionCon=0.5, minTrackCon=0.5)
 
 while True:
     success, img = cap.read()
@@ -27,8 +24,6 @@ while True:
 
         fingers1 = detector.fingersUp(hand1)
         print(f'H1 = {fingers1.count(1)}', end="")
-
-
 
         tipOfFirstFinger1 = lmList1[4][0:2]
         tipOfSecondFinger1 = lmList1[8][0:2]
@@ -50,8 +45,3 @@ while True:
 
     cv2.imshow("Hand Tracing", img)
     cv2.waitKey(1)
-
-
-
-
-

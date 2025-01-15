@@ -1,4 +1,3 @@
-import cvzone
 from cvzone.HandTrackingModule import HandDetector
 import cv2
 
@@ -8,11 +7,11 @@ cap = cv2.VideoCapture(0)
 cap.set(3, 1080)
 cap.set(4, 720)
 
-detector = HandDetector( maxHands=2,  detectionCon=0.8, minTrackCon=0.5)
+detector = HandDetector(maxHands=2, detectionCon=0.8, minTrackCon=0.5)
 
 startDist = None
 scale = 0
-cx, cv = 500,500
+cx, cv = 500, 500
 
 while True:
     success, img = cap.read()
@@ -21,8 +20,8 @@ while True:
     img1 = cv2.imread("Zooming.png")
 
     if len(hands) == 2:
-        if detector.fingersUp(hands[0]) == [1,1,0,0,0] and \
-                detector.fingersUp(hands[1]) == [1,1,0,0,0]:
+        if detector.fingersUp(hands[0]) == [1, 1, 0, 0, 0] and \
+                detector.fingersUp(hands[1]) == [1, 1, 0, 0, 0]:
 
             lmList1 = hands[0]["lmList"]
             lmList2 = hands[1]["lmList"]
@@ -46,13 +45,9 @@ while True:
         newH, newW = ((h1 + scale) // 2) * 2, ((w1 + scale) // 2) * 2
         img1 = cv2.resize(img1, (newW, newH))
 
-        img[cv-newH//2:cv+ newH//2, cx-newW//2:cx+ newW//2] = img1
+        img[cv - newH // 2:cv + newH // 2, cx - newW // 2:cx + newW // 2] = img1
     except:
         pass
 
-
     cv2.imshow("Hand Tracing", img)
     cv2.waitKey(2)
-
-
-
