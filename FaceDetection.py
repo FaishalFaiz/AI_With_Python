@@ -1,4 +1,6 @@
-import cvzone
+# You can also import the whole library of cvzone with "import cvzone"
+from cvzone.Utils import putTextRect
+from cvzone.Utils import cornerRect
 from cvzone.FaceDetectionModule import FaceDetector
 import cv2
 
@@ -21,8 +23,8 @@ while True:
 
             # Draw Data
             cv2.circle(img, center, 5, (255, 0, 255), cv2.FILLED)
-            cvzone.putTextRect(img,  f'{score}%', (x, y - 10))
-            cvzone.cornerRect(img, (x,y,w,h))
+            putTextRect(img,  f'{score}%', (x, y - 10))
+            cornerRect(img, (x,y,w,h))
 
     cv2.imshow("Face Detection", img)
     cv2.waitKey(1)
